@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HORSEWEB - Премиальная татарская конина</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Georgia', serif;
+        }
+
+        body {
+            background-color: #ffffff;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, #f8f8f8 0%, #ffffff 100%);
+            padding: 40px 0;
+            text-align: center;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .logo {
+            font-size: 48px;
+            font-weight: bold;
+            background: linear-gradient(45deg, #d4af37, #ffd700, #d4af37);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+
+        .tagline {
+            font-size: 18px;
+            color: #666;
+            font-style: italic;
+            margin-bottom: 30px;
+        }
+
+        .contact-info {
+            background: #f8f8f8;
+            padding: 15px;
+            border-radius: 10px;
+            display: inline-block;
+        }
+
+        .phone, .telegram {
+            font-size: 20px;
+            margin: 10px 0;
+            color: #d4af37;
+            font-weight: bold;
+        }
+
+        .products {
+            padding: 60px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 50px;
+            color: #d4af37;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            border: 1px solid #f0f0f0;
+            cursor: pointer;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        .product-card.active {
+            border: 2px solid #d4af37;
+            background: #fffdf5;
+        }
+
+        .product-name {
+            font-size: 24px;
+            color: #d4af37;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .product-description {
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .product-price {
+            font-size: 20px;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .product-detail {
+            display: none;
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            margin-top: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            border: 1px solid #f0f0f0;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .product-detail.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .detail-name {
+            font-size: 32px;
+            color: #d4af37;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .detail-description {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 25px;
+            line-height: 1.8;
+        }
+
+        .detail-features {
+            background: #f8f8f8;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 25px 0;
+        }
+
+        .detail-features h3 {
+            color: #d4af37;
+            margin-bottom: 15px;
+        }
+
+        .detail-features ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .detail-features li {
+            padding: 8px 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .detail-features li:last-child {
+            border-bottom: none;
+        }
+
+        .quality {
+            padding: 60px 0;
+            background: #f8f8f8;
+        }
+
+        .quality-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .quality-text {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 40px 0;
+        }
+
+        .footer-contact {
+            font-size: 20px;
+            margin: 15px 0;
+        }
+
+        .gold {
+            color: #d4af37;
+        }
+
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 36px;
+            }
+            
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">HORSEWEB</div>
+            <div class="tagline">Элитная татарская конина в белом стиле</div>
+            <div class="contact-info">
+                <div class="phone">+375 (44) 528-36-49</div>
+                <div class="telegram">Telegram: @Vesna452</div>
+            </div>
+        </div>
+    </header>
+
+    <section class="products">
+        <div class="container">
+            <h2 class="section-title">Наши премиальные сорта</h2>
+            <div class="product-grid">
+                <div class="product-card" onclick="showDetail('ulyatina')">
+                    <div class="product-name">Ульятина</div>
+                    <div class="product-description">Нежнейшее мясо молодых лошадей</div>
+                    <div class="product-price">от 85 руб/кг</div>
+                </div>
+
+                <div class="product-card" onclick="showDetail('sementsovshchina')">
+                    <div class="product-name">Семенцовщина</div>
+                    <div class="product-description">Отборная конина с мраморным рисунком</div>
+                    <div class="product-price">от 95 руб/кг</div>
+                </div>
+
+                <div class="product-card" onclick="showDetail('burlyatina')">
+                    <div class="product-name">Бурлятина</div>
+                    <div class="product-description">Энергичный вкус для ценителей</div>
+                    <div class="product-price">от 90 руб/кг</div>
+                </div>
+
+                <div class="product-card" onclick="showDetail('stasytina')">
+                    <div class="product-name">Стасятина</div>
+                    <div class="product-description">Эксклюзивный сорт с особой выдержкой</div>
+                    <div class="product-price">от 100 руб/кг</div>
+                </div>
+
+                <div class="product-card" onclick="showDetail('trotsyatina')">
+                    <div class="product-name">Троцятина</div>
+                    <div class="product-description">Ароматная выдержанная конина</div>
+                    <div class="product-price">от 88 руб/кг</div>
+                </div>
+
+                <div class="product-card" onclick="showDetail('mashatina')">
+                    <div class="product-name">Машатина</div>
+                    <div class="product-description">Нежная текстура, изысканный вкус</div>
+                    <div class="product-price">от 92 руб/кг</div>
+                </div>
+
+                <div class="product-card" onclick="showDetail('kolbasa')">
+                    <div class="product-name">Поповна Дроздовская колбаса</div>
+                    <div class="product-description">Фирменная конная колбаса</div>
+                    <div class="product-price">от 75 руб/кг</div>
+                </div>
+
+                <div class="product-card" onclick="showDetail('kumys')">
+                    <div class="product-name">Кумыс Татарский Кудряшов Монтано</div>
+                    <div class="product-description">Традиционный освежающий напиток</div>
+                    <div class="product-price">от 45 руб/л</div>
+                </div>
+            </div>
+
+            <!-- Детальные описания -->
+            <div id="ulyatina" class="product-detail">
+                <div class="detail-name">Ульятина</div>
+                <div class="detail-description">
+                    Премиальный сорт конины, названный в честь основателя нашего производства. 
+                    Мясо от молодых лошадей возрастом до 3 лет, выращенных на альпийских лугах.
+                </div>
+                <div class="detail-features">
+                    <h3>Особенности:</h3>
+                    <ul>
+                        <li>Возраст: до 3 лет</li>
+                        <li>Специальная диета: овес и травы</li>
+                        <li>Созревание: 21 день в вакууме</li>
+                        <li>Текстура: нежная, сочная</li>
+                        <li>Идеально для: стейков, тартара</li>
+                    </ul>
+                </div>
+                <div class="product-price">Цена: от 85 руб/кг</div>
+            </div>
+
+            <div id="sementsovshchina" class="product-detail">
+                <div class="detail-name">Семенцовщина</div>
+                <div class="detail-description">
+                    Элитный сорт с выраженным мраморным рисунком. Назван в честь мастера Семенца, 
+                    разработавшего уникальную технологию выдержки мяса.
+                </div>
+                <div class="detail-features">
+                    <h3>Особенности:</h3>
+                    <ul>
+                        <li>Мраморность: высший сорт</li>
+                        <li>Выдержка: 28 дней</li>
+                        <li>Порода: ахалтекинская</li>
+                        <li>Вкус: насыщенный, бархатный</li>
+                        <li>Идеально для: гриля, запекания</li>
+                    </ul>
+                </div>
+                <div class="product-price">Цена: от 95 руб/кг</div>
+            </div>
+
+            <div id="burlyatina" class="product-detail">
+                <div class="detail-name">Бурлятина</div>
+                <div class="detail-description">
+                    Энергичный и яркий вкус, который не оставит равнодушным. Сорт создан для 
+                    истинных ценителей крепких ароматов и насыщенных вкусов.
+                </div>
+                <div class="detail-features">
+                    <h3>Особенности:</h3>
+                    <ul>
+                        <li>Выдержка: 35 дней</li>
+                        <li>Маринад: традиционные травы</li>
+                        <li>Аромат: дымный, пряный</li>
+                        <li>Текстура: плотная, волокнистая</li>
+                        <li>Идеально для: жаркого, плова</li>
+                    </ul>
+                </div>
+                <div class="product-price">Цена: от 90 руб/кг</div>
+            </div>
+
+            <div id="stasytina" class="product-detail">
+                <div class="detail-name">Стасятина</div>
+                <div class="detail-description">
+                    Самый эксклюзивный сорт в нашей коллекции. Готовится по секретному 
+                    рецепту семьи Стасюкевич, передающемуся из поколения в поколение.
+                </div>
+                <div class="detail-features">
+                    <h3>Особенности:</h3>
+                    <ul>
+                        <li>Выдержка: 45 дней</li>
+                        <li>Специи: 12 уникальных компонентов</li>
+                        <li>Приготовление: медленное томление</li>
+                        <li>Вкус: сложный, многослойный</li>
+                        <li>Идеально для: особых случаев</li>
+                    </ul>
+                </div>
+                <div class="product-price">Цена: от 100 руб/кг</div>
+            </div>
+
+            <div id="trotsyatina" class="product-detail">
+                <div class="detail-name">Троцятина</div>
+                <div class="detail-description">
+                    Новый сорт, сочетающий в себе традиции и современные технологии. 
+                    Идеальный баланс нежности и насыщенного вкуса.
+                </div>
+                <div class="detail-features">
+                    <h3>Особенности:</h3>
+                    <ul>
+                        <li>Возраст: 2-4 года</li>
+                        <li>Выдержка: 25 дней</li>
+                        <li>Порода: башкирская</li>
+                        <li>Вкус: сбалансированный, мягкий</li>
+                        <li>Идеально для: любых блюд</li>
+                    </ul>
+                </div>
+                <div class="product-price">Цена: от 88 руб/кг</div>
+            </div>
+
+            <div id="mashatina" class="product-detail">
+                <div class="detail-name">Машатина</div>
+                <div class="detail-description">
+                    Невероятно нежный сорт, созданный специально для гурманов, 
+                    ценящих тонкие вкусовые нюансы и бархатную текстуру.
+                </div>
+                <div class="detail-features">
+                    <h3>Особенности:</h3>
+                    <ul>
+                        <li>Возраст: 1.5-2 года</li>
+                        <li>Выдержка: 18 дней</li>
+                        <li>Диета: молочная</li>
+                        <li>Текстура: маслянистая</li>
+                        <li>Идеально для: карпаччо, салатов</li>
+                    </ul>
+                </div>
+                <div class="product-price">Цена: от 92 руб/кг</div>
+            </div>
+
+            <div id="kolbasa" class="product-detail">
+                <div class="detail-name">Поповна Дроздовская колбаса</div>
+                <div class="detail-description">
+                    Легендарная конная колбаса по старинному рецепту семьи Дроздовых. 
+                    Уникальная рецептура и технология копчения.
+                </div>
+                <div class="detail-features">
+                    <h3>Особенности:</h3>
+                    <ul>
+                        <li>Копчение: на буковых опилках</li>
+                        <li>Специи: 7 секретных компонентов</li>
+                        <li>Созревание: 14 дней</li>
+                        <li>Вкус: пикантный, с дымком</li>
+                        <li>Идеально для: закусок, бутербродов</li>
+                    </ul>
+                </div>
+                <div class="product-price">Цена: от 75 руб/кг</div>
+            </div>
+
+            <div id="kumys" class="product-detail">
+                <div class="detail-name">Кумыс Татарский Кудряшов Монтано</div>
+                <div class="detail-description">
+                    Трационный татарский напиток из кобыльего молока. Освежающий, 
+                    полезный и невероятно вкусный. Производится по уникальной технологии.
+                </div>
+                <div class="detail-features">
+                    <h3>Особенности:</h3>
+                    <ul>
+                        <li>Крепость: 1.5-3%</li>
+                        <li>Брожение: 3-5 дней</li>
+                        <li>Польза: пробиотики, витамины</li>
+                        <li>Вкус: освежающий, кисломолочный</li>
+                        <li>Идеально для: здоровья, утоления жажды</li>
+                    </ul>
+                </div>
+                <div class="product-price">Цена: от 45 руб/л</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="quality">
+        <div class="container">
+            <div class="quality-content">
+                <h2 class="section-title">О качестве</h2>
+                <p class="quality-text">
+                    Мы предлагаем исключительно премиальную конину, выращенную на экологически чистых пастбищах 
+                    Татарстана. Каждый сорт проходит строгий отбор и готовится по старинным семейным рецептам, 
+                    передающимся из поколения в поколение.
+                </p>
+                <p class="quality-text">
+                    Наше мясо - это симбиоз традиций и современных технологий, гарантирующий непревзойденный 
+                    вкус и качество для истинных гурманов.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="logo" style="font-size: 36px; margin-bottom: 20px;">HORSEWEB</div>
+            <div class="footer-contact">
+                <div>Заказ по телефону: <span class="gold">+375 (44) 528-36-49</span></div>
+                <div>Telegram: <span class="gold">@Vesna452</span></div>
+            </div>
+            <p style="margin-top: 20px; color: #ccc;">© 2024 HORSEWEB. Премиальная татарская конина</p>
+        </div>
+    </footer>
+
+    <script>
+        function showDetail(productId) {
+            // Скрываем все детальные описания
+            const allDetails = document.querySelectorAll('.product-detail');
+            allDetails.forEach(detail => {
+                detail.classList.remove('active');
+            });
+
+            // Убираем активный класс со всех карточек
+            const allCards = document.querySelectorAll('.product-card');
+            allCards.forEach(card => {
+                card.classList.remove('active');
+            });
+
+            // Показываем выбранное детальное описание
+            const selectedDetail = document.getElementById(productId);
+            if (selectedDetail) {
+                selectedDetail.classList.add('active');
+                
+                // Добавляем активный класс к выбранной карточке
+                const selectedCard = event.currentTarget;
+                selectedCard.classList.add('active');
+                
+                // Прокручиваем к детальному описанию
+                selectedDetail.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
+        // Показываем первое описание при загрузке страницы
+        document.addEventListener('DOMContentLoaded', function() {
+            showDetail('ulyatina');
+        });
+    </script>
+</body>
+</html>
